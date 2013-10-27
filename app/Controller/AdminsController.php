@@ -1,4 +1,5 @@
 <?php
+App::uses('User', 'Jefe');
 
 class AdminsController extends AppController {
 
@@ -15,7 +16,7 @@ class AdminsController extends AppController {
         $this->Session->setFlash(__('Invalid username or password, try again'));
     }
 	}
-
+	
 	public function logout() {
     return $this->redirect($this->Auth->logout());
 	}
@@ -33,17 +34,28 @@ class AdminsController extends AppController {
         $this->set('admin', $this->Admin->read(null, $id));
     }
 
-    public function add() {
+    public function agregar_jefe() {
         if ($this->request->is('post')) {
-            $this->Admin->create();
-            if ($this->Admin->save($this->request->data)) {
+            $this->User->create();
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('El jefe de grupo ha sido almacenado'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('El jefe de grupo no ha sido guardado. Por favor intente de nuevo'));
+        }
+    }
+	
+	public function add() {
+        if ($this->request->is('post')) {
+            $this->User->create();
+            if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'));
                 return $this->redirect(array('action' => 'index'));
             }
             $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
         }
     }
-
+	
     public function edit($id = null) {
         $this->Admin->id = $id;
         if (!$this->Admin->exists()) {

@@ -2,12 +2,11 @@
 // app/Controller/UsersController.php
 class UsersController extends AppController {
 
-   
-	public function beforeFilter() {
-    parent::beforeFilter();
-    $this->Auth->allow('add'); // Letting users register themselves
-}
-
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('add');
+    }
+	
 	public function login() {
     if ($this->request->is('post')) {
         if ($this->Auth->login()) {
@@ -17,10 +16,11 @@ class UsersController extends AppController {
     }
 }
 
-	public function logout() {
+public function logout() {
     return $this->redirect($this->Auth->logout());
-	}
-	
+}
+
+
     public function index() {
         $this->User->recursive = 0;
         $this->set('users', $this->paginate());
@@ -42,6 +42,39 @@ class UsersController extends AppController {
                 return $this->redirect(array('action' => 'index'));
             }
             $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+        }
+    }
+	
+	public function agregar_jefe() {
+        if ($this->request->is('post')) {
+            $this->User->create();
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('El jefe de grupo ha sido guardado'));
+                return $this->redirect(array('controller' =>'admins','action' => 'index'));
+            }
+            $this->Session->setFlash(__('El jefe de grupo no pudo ser guardado. Por favor intente nuevamente'));
+        }
+    }
+	
+	public function agregar_encargado() {
+        if ($this->request->is('post')) {
+            $this->User->create();
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('El encargado de cafeteria ha sido guardado'));
+                return $this->redirect(array('controller' =>'admins','action' => 'index'));
+            }
+            $this->Session->setFlash(__('El encargado de cafeteria no pudo ser guardado. Por favor intente nuevamente'));
+        }
+    }
+	
+	public function agregar_alumno() {
+        if ($this->request->is('post')) {
+            $this->User->create();
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('El alumno ha sido guardado'));
+                return $this->redirect(array('controller' =>'admins','action' => 'index'));
+            }
+            $this->Session->setFlash(__('El alumno no pudo ser guardado. Por favor intente nuevamente'));
         }
     }
 
@@ -77,5 +110,4 @@ class UsersController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 }
-
 ?>

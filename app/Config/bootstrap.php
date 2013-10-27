@@ -88,6 +88,9 @@ Cache::config('default', array('engine' => 'File'));
  *
  * ));
  */
+ 
+Inflector::rules('plural', array('irregular' => array('generacion' => 'generaciones')));
+
 Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',
 	'CacheDispatcher'

@@ -4,17 +4,17 @@ class UsersController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add');
+        $this->Auth->allow('index');
     }
 	
 	public function login() {
-    if ($this->request->is('post')) {
-        if ($this->Auth->login()) {
-            return $this->redirect($this->Auth->redirect());
-        }
-        $this->Session->setFlash(__('Invalid username or password, try again'));
-    }
-}
+		if ($this->request->is('post')) {
+			if ($this->Auth->login()) {
+				return $this->redirect(array('controller' => 'users', 'action' => 'index'));
+			}
+			$this->Session->setFlash(__('Invalid username or password, try again'));
+		}
+	}
 
 public function logout() {
     return $this->redirect($this->Auth->logout());
@@ -22,8 +22,30 @@ public function logout() {
 
 
     public function index() {
+	
+		
         $this->User->recursive = 0;
         $this->set('users', $this->paginate());
+			
+		$this->set('usuarios', $this->User->find('all'));
+		
+		$this->set('usuario_registrado', $this->Auth->user());
+		
+		$usuario= $this->Auth->user();
+		
+		if ($usuario['role']=='jefe') {
+			return $this->redirect(array('controller' => 'jefes', 'action' => 'index'));
+		}
+		
+		else if ($usuario['role']=='admin') {
+		$this->set('admin', $this->Auth->user());
+			return $this->redirect(array('controller' => 'admins', 'action' => 'index'));
+		}
+		
+		else if ($usuario['role']=='alumno') {
+		$this->set('admin', $this->Auth->user());
+			return $this->redirect(array('controller' => 'alumnos', 'action' => 'index'));
+		}
     }
 
     public function view($id = null) {
@@ -33,6 +55,10 @@ public function logout() {
         }
         $this->set('user', $this->User->read(null, $id));
     }
+	
+	public function lista_alumnos(){
+		$this->set('alumnos', $this->User->find('all', array('conditions' => array('User.role' => 'alumno'))));
+	}
 
     public function add() {
         if ($this->request->is('post')) {
@@ -46,6 +72,10 @@ public function logout() {
     }
 	
 	public function agregar_jefe() {
+	
+	$this->set('generaciones', $this->User->Generacion->find('list'));
+	
+	
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
@@ -68,6 +98,9 @@ public function logout() {
     }
 	
 	public function agregar_alumno() {
+	
+		$this->set('generaciones', $this->User->Generacion->find('list'));
+		
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {

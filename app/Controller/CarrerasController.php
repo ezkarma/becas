@@ -8,7 +8,7 @@ class CarrerasController extends AppController {
 		if ($this->Carrera->save($this->request->data)) {
 						
 				$this->Session->setFlash('Se ha Guardado la Carrera Exitosamente','success');
-				$this->redirect(array('action'=>'agregar'));
+				$this->redirect(array('controller'=>'admins','action'=>'index'));
 			}
 		
 		}

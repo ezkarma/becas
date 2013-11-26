@@ -24,6 +24,7 @@ class AdminsController extends AppController {
     public function index() {
         //$this->Admin->recursive = 0;
        // $this->set('admins', $this->paginate());
+	   $this->set('usuario_registrado', $this->Auth->user());
     }
 
     public function view($id = null) {

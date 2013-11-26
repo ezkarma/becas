@@ -1,12 +1,19 @@
-<?php 
+<h2>Sistema de Gestion de Becas Alimenticias de la UAI</h2>
 
-echo 'Alumnos';
+<h3>Bienvenido
+<?php
+echo $usuario_registrado['nombre'];
+?>
+</h3>
+<h4>Alumno</h4>
 
-echo '<br>';
+<h3>Usted tiene <?php echo $usuario_registrado['dias_disp'];?> dias disponibles</h3>
 
-foreach($alumnos as $alumno){
-echo $alumno['Alumno']['nombre'];
-}
+<br>
+<?php
+echo $this->Html->link("Solicitar Dia", array('controller' =>'users','action'=> 'agregar_jefe'));
 
-echo $this->Html->link('Regresar', array('action'=>'index'));
+echo '<br><br>';
+echo $this->Html->link("Salir", array('controller' =>'users','action'=> 'logout'));
+
 ?>

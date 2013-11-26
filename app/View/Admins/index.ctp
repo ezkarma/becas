@@ -1,5 +1,12 @@
-<div class="users form">
-Bienvenido Admin
+
+<h2>Sistema de Gestion de Becas Alimenticias de la UAI</h2>
+
+<h3>Bienvenido
+<?php
+echo $usuario_registrado['username'];
+?>
+</h3>
+<h1>Administrador</h1>
 
 <br>
 <?php
@@ -14,5 +21,10 @@ echo $this->Html->link("Agregar Carrera", array('controller' =>'carreras','actio
 echo '<br>';
 echo $this->Html->link("Agregar Generacion", array('controller' =>'generaciones','action'=> 'agregar'));
 
+echo '<br><br>';
+echo $this->Html->link("Generar Periodo de Becas", array('controller' =>'periodos','action'=> 'agregar'));
+
+echo '<br><br>';
+echo $this->Html->link("Salir", array('controller' =>'users','action'=> 'logout'));
+
 ?>
-</div>

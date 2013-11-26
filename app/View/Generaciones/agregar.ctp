@@ -7,8 +7,10 @@ echo $this->Form->create('Generacion', array(
     )
 ));
 
-echo $this->Form->input('clave',array('label' => 'Clave','type' => 'textbox'));
-echo $this->Form->input('nombre', array('label' => 'Nombre de la Carrera'));
+echo $this->Form->input('id',array('label' => 'Clave','type' => 'textbox'));
+echo $this->Form->input('nombre', array('label' => 'Nombre de la Generacion'));
+echo $this->Form->input('carrera_id');
+
 
 echo $this->Form->end(__('Guardar')); 
 

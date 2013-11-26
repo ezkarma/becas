@@ -3,11 +3,15 @@
 class GeneracionesController extends AppController {
     
 	 function agregar(){
-		if($this->request->is('post')){
+	 
+	$this->set('carreras', $this->Generacion->Carrera->find('list'));
+ 	
 		
-		if ($this->Carrera->save($this->request->data)) {
+		if($this->request->is('post')){
+			
+		if ($this->Generacion->save($this->request->data)) {
 						
-				$this->Session->setFlash('Se ha Guardado la Carrera Exitosamente','success');
+				$this->Session->setFlash('Se ha Guardado la Generacion Exitosamente');
 				$this->redirect(array('action'=>'agregar'));
 			}
 		

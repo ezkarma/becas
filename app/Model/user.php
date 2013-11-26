@@ -2,6 +2,14 @@
 <?php
 // app/Model/User.php
 class User extends AppModel {
+	
+	public $belongsTo = array(
+        'Generacion' => array(
+            'className' => 'Generacion',
+            'foreignKey' => 'generacion_id'
+        )
+    );
+	
     public $validate = array(
         'username' => array(
             'required' => array(

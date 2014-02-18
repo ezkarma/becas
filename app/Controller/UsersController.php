@@ -2,6 +2,8 @@
 // app/Controller/UsersController.php
 class UsersController extends AppController {
 
+var $uses = array('User','Beca');
+
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('index');
@@ -12,18 +14,61 @@ class UsersController extends AppController {
 			if ($this->Auth->login()) {
 				return $this->redirect(array('controller' => 'users', 'action' => 'index'));
 			}
-			$this->Session->setFlash(__('Invalid username or password, try again'));
+			$this->Session->setFlash(__('Usuario o contraseña incorrecta, intente de nuevo'));
 		}
 	}
 
-public function logout() {
-    return $this->redirect($this->Auth->logout());
-}
+	public function logout() {
+		return $this->redirect($this->Auth->logout());
+	}
+	
+	public function reasignacion() {
+		$fecha = date('Y-m-d');
+		$this->set('usuario_registrado', $this->Auth->user());
+		$this->set('usuarios', $this->Beca->find('all', array('conditions' => array('Beca.fecha <' => $fecha,'Beca.otorgada ='=>'0'))));
+	}
+	
+	public function perfil() {
+		$this->set('usuario_registrado', $this->Auth->user());
+	}
+	
+	public function password() {
+	
+	
+		$this->set('usuario', $this->Auth->user());
+		$usuario = $this->Auth->user();
+		
+		$user=$this->User->find('first',array('conditions' => array('username' => $usuario['username'])));
+        
+		
+		
+		 if ($this->request->is('post') || $this->request->is('put')) {
+            $this->request->data;
+			
+			//Checa contraseña actual
+			if ($user['User']['password'] ==AuthComponent::password($this->request->data['User']['password_vieja'])){
+						
+				//Checa si las contraseñas coinciden
+				if ($this->request->data['User']['password_nueva'] == $this->request->data['User']['password']){
+					if ($this->User->save($this->request->data)) {
+						$this->Session->setFlash(__('La contraseña ha sido modificada'));
+						return $this->redirect(array('controller' => 'users', 'action' => 'perfil'));
+						
+					}
+					
+				}
+				else $this->Session->setFlash(__('Las contraseñas no coinciden'));
+			}
+			else $this->Session->setFlash(__('Contraseña incorrecta'));
+		}
+		
+		
+		
+	}
 
 
     public function index() {
-	
-		
+			
         $this->User->recursive = 0;
         $this->set('users', $this->paginate());
 			
@@ -45,6 +90,11 @@ public function logout() {
 		else if ($usuario['role']=='alumno') {
 		$this->set('admin', $this->Auth->user());
 			return $this->redirect(array('controller' => 'alumnos', 'action' => 'index'));
+		}
+		
+		else if ($usuario['role']=='encargado') {
+		$this->set('admin', $this->Auth->user());
+			return $this->redirect(array('controller' => 'encargados', 'action' => 'index'));
 		}
     }
 
@@ -73,20 +123,27 @@ public function logout() {
 	
 	public function agregar_jefe() {
 	
-	$this->set('generaciones', $this->User->Generacion->find('list'));
-	
-	
-        if ($this->request->is('post')) {
-            $this->User->create();
-            if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('El jefe de grupo ha sido guardado'));
-                return $this->redirect(array('controller' =>'admins','action' => 'index'));
-            }
-            $this->Session->setFlash(__('El jefe de grupo no pudo ser guardado. Por favor intente nuevamente'));
-        }
+		if ($this->Session->read('Auth.User.role') === 'admin'){
+		
+		$this->set('generaciones', $this->User->Generacion->find('list'));
+		
+		
+			if ($this->request->is('post')) {
+				$this->User->create();
+				if ($this->User->save($this->request->data)) {
+					$this->Session->setFlash(__('El jefe de grupo ha sido guardado'));
+					return $this->redirect(array('controller' =>'admins','action' => 'index'));
+				}
+				$this->Session->setFlash(__('El jefe de grupo no pudo ser guardado. Por favor intente nuevamente'));
+			}
+		
+		}
+	   else $this->redirect(array('action' => 'logout'));
     }
 	
 	public function agregar_encargado() {
+	
+		if ($this->Session->read('Auth.User.role') === 'admin'){
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
@@ -95,10 +152,14 @@ public function logout() {
             }
             $this->Session->setFlash(__('El encargado de cafeteria no pudo ser guardado. Por favor intente nuevamente'));
         }
+		}
+	   else $this->redirect(array('action' => 'logout'));
     }
 	
 	public function agregar_alumno() {
-	
+		
+		if ($this->Session->read('Auth.User.role') === 'admin'){
+		
 		$this->set('generaciones', $this->User->Generacion->find('list'));
 		
         if ($this->request->is('post')) {
@@ -109,6 +170,8 @@ public function logout() {
             }
             $this->Session->setFlash(__('El alumno no pudo ser guardado. Por favor intente nuevamente'));
         }
+		}
+	   else $this->redirect(array('action' => 'logout'));
     }
 
     public function edit($id = null) {
@@ -142,5 +205,6 @@ public function logout() {
         $this->Session->setFlash(__('User was not deleted'));
         return $this->redirect(array('action' => 'index'));
     }
+	
 }
 ?>

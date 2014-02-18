@@ -29,10 +29,7 @@ echo $this->Form->end(__('Asignar'));
 
 ?>
 
-
 </div>
-
-
 </center>
 
  

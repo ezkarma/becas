@@ -33,40 +33,23 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-//public $theme = "Cakestrap";
-
-public $components = array(
-        'Session', 'DebugKit.Toolbar',
-       'Auth' => array(
-        'authenticate' => array(
-            'Form' => array(
-                'userModel' => 'Empleado',
-                'fields' => array(
-                    'username' => 'USER_LOGINNAME',
-                    'password' => 'USER_PASSWORD'
-                )
+	 public $components = array(
+        'Session',
+        'Auth' => array(
+            'loginRedirect' => array(
+                'controller' => 'posts',
+                'action' => 'index'
+            ),
+            'logoutRedirect' => array(
+                'controller' => 'pages',
+                'action' => 'display',
+                'home'
             )
         )
-    )
-	
     );
 
-     public function beforeFilter()
-{        
-    if($this->Auth->user('USER_ID'))
-    {
-        $this->set('logged_in', true);                     
+    public function beforeFilter() {
+        $this->Auth->allow('index', 'view','agregar_alumno');
     }
-    else
-    { 
-        $this->set('logged_in', false);
-    }
-
-    //Configure AuthComponent
-    $this->Auth->userScope = array('Empleado.USER_STATUS' => '1');
-    $this->Auth->loginAction = array('controller' => 'empleado', 'action' => 'login');
-    $this->Auth->logoutRedirect = array('controller' => 'empleado', 'action' => 'login');
-    $this->Auth->loginRedirect = array('controller' => 'empleado', 'action' => 'perfil');        
-}    
-
+ 
 }

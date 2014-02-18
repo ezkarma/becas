@@ -1,30 +1,16 @@
 
-<h2>Sistema de Gestion de Becas Alimenticias de la UAI</h2>
+<h2><font color='000066'>Sistema de Gestion de Becas Alimenticias de la UAI</font></h2>
 
 <h3>Bienvenido
 <?php
 echo $usuario_registrado['username'];
 ?>
 </h3>
-<h1>Administrador</h1>
+<h4>Administrador</h4>
 
 <br>
 <?php
-echo $this->Html->link("Agregar Jefe de Grupo", array('controller' =>'users','action'=> 'agregar_jefe'));
-echo '<br>';
-echo $this->Html->link("Agregar Encargado de Cafeteria", array('controller' =>'users','action'=> 'agregar_encargado'));
-echo '<br>';
-echo $this->Html->link("Agregar Alumno", array('controller' =>'users','action'=> 'agregar_alumno'));
 
-echo '<br><br>';
-echo $this->Html->link("Agregar Carrera", array('controller' =>'carreras','action'=> 'agregar'));
-echo '<br>';
-echo $this->Html->link("Agregar Generacion", array('controller' =>'generaciones','action'=> 'agregar'));
-
-echo '<br><br>';
 echo $this->Html->link("Generar Periodo de Becas", array('controller' =>'periodos','action'=> 'agregar'));
-
-echo '<br><br>';
-echo $this->Html->link("Salir", array('controller' =>'users','action'=> 'logout'));
 
 ?>

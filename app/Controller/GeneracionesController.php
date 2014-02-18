@@ -12,7 +12,7 @@ class GeneracionesController extends AppController {
 		if ($this->Generacion->save($this->request->data)) {
 						
 				$this->Session->setFlash('Se ha Guardado la Generacion Exitosamente');
-				$this->redirect(array('action'=>'agregar'));
+				$this->redirect(array('controller'=>'admins','action'=>'index'));
 			}
 		
 		}

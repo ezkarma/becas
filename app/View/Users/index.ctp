@@ -6,9 +6,6 @@
 <?php
 echo $usuario_registrado['username'];
 
-echo $this->Html->link("Ingresar", array('controller' =>'users','action'=> 'login'));
-echo '<br>';
-
 echo '<center>'.$this->Html->image('baner.gif').'</center>';
 ?>
 

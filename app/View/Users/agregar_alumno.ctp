@@ -12,7 +12,7 @@
 		echo $this->Form->input('generacion_id');
 		echo $this->Form->input('username',array('label' => 'Correo Electronico'));
         echo $this->Form->input('password');
-	        echo $this->Form->hidden('role', array('default'=>'alumno'));
+	    echo $this->Form->hidden('role', array('default'=>'alumno'));
     ?>
     </fieldset>
 <?php echo $this->Form->end(__('Guardar')); ?>

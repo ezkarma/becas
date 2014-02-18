@@ -35,7 +35,7 @@ class FechasController extends AppController {
 				if($this->User->updateAll(array('User.dias_disp' =>"'" . $this->request->data['User']['dias_disp'] . "'"),array('User.role' => 'alumno'))){
 					
 				$this->Session->setFlash('Los dias fueron asignados');
-				$this->redirect(array('controller'=>'fechas','action'=>'asignacion'));
+				$this->redirect(array('controller'=>'users','action'=>'index'));
 				
 				}		
 		

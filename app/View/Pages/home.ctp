@@ -23,5 +23,3 @@ endif;
 App::uses('Debugger', 'Utility');
 ?>
 <h2>Sistema de Gestion de Becas Alimenticias de la UAI</h2>
-
-<h3>Mal Login</h3>

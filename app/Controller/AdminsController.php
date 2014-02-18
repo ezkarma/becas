@@ -24,7 +24,10 @@ class AdminsController extends AppController {
     public function index() {
         //$this->Admin->recursive = 0;
        // $this->set('admins', $this->paginate());
+	    if ($this->Session->read('Auth.User.role') === 'admin'){
 	   $this->set('usuario_registrado', $this->Auth->user());
+	   }
+	   else $this->redirect(array('action' => 'logout'));
     }
 
     public function view($id = null) {

@@ -61,8 +61,5 @@ echo $this->Form->end(__('Guardar'));
 
 ?>
 
-
 </div>
-
-
 </center>

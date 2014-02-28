@@ -10,6 +10,7 @@ var $uses = array('User','Beca');
     }
 	
 	public function login() {
+	//echo AuthComponent::password('admin');
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
 				return $this->redirect(array('controller' => 'users', 'action' => 'index'));
@@ -205,6 +206,23 @@ var $uses = array('User','Beca');
         $this->Session->setFlash(__('User was not deleted'));
         return $this->redirect(array('action' => 'index'));
     }
+	
+	public function actualizar(){
+		$usuarios=$this->User->find('all', array('conditions' => array('User.id <' => 15)));
+		$this->set('usuarios', $usuarios);
+		
+		
+		foreach($usuarios as $user){
+			$string = AuthComponent::password($user['User']['username']);
+			$this->User->updateAll(array('User.password' => '"'.$string.'"'), array('User.username' => $user['User']['username']));
+		}
+		
+		
+		foreach($usuarios as $user){
+			$string = AuthComponent::password($user['User']['username']);
+			$this->User->updateAll(array('User.role' => '"alumno"'), array('User.username' => $user['User']['username']));
+		}
+	}
 	
 }
 ?>

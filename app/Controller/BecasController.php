@@ -10,6 +10,11 @@ var $uses = array('Fecha','User','Beca','Session','Periodo');
 		$this->set('becas', $this->Fecha->find('all', array('conditions' => array('Fecha.fecha !=' => '0000-00-00'))));
     }
 	
+	 public function calendario() {
+        $this->set('usuario_registrado', $this->Auth->user());
+		$this->set('becas', $this->Fecha->find('all', array('conditions' => array('Fecha.fecha !=' => '0000-00-00'))));
+    }
+	
 	public function solicitar($fecha) {
 	  
 		$usuario = $this->Auth->user();

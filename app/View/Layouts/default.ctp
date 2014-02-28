@@ -87,7 +87,7 @@ $cakeDescription = __d('cake_dev', 'Becas Alimenticias');
 	<?php
 		echo $this->Html->meta('icon');
 
-		//echo $this->Html->css('cake.generic');
+		echo $this->Html->css('cake.generic');
 		
 		echo $this->Html->css('bootstrap');
 
@@ -152,7 +152,7 @@ $cakeDescription = __d('cake_dev', 'Becas Alimenticias');
 								}
 								else if($user == 'alumno'){
 								echo 		'<li class="tutorials"><a href="/users/perfil">Mi perfil</a>  </li>';
-								if ($this->Session->read('Auth.User.dias_disp')) echo	'<li class="tutorials"><a href="../becas/listado">Solicitar Dia</a>  </li>';
+								if ($this->Session->read('Auth.User.dias_disp')) echo	'<li class="tutorials"><a href="../becas/calendario">Solicitar Dia</a>  </li>';
 								echo			'</ul>
 												<ul class="nav navbar-nav navbar-right">
 												<li><a href="/users/logout">Salir</a></li>

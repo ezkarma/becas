@@ -11,9 +11,12 @@ var $uses = array('Fecha','User','Beca','Session','Periodo');
     }
 	
 	 public function calendario() {
+		if ($this->Session->read('Auth.User.dias_disp') > 0){
         $this->set('usuario_registrado', $this->Auth->user());
 		$this->set('becas', $this->Fecha->find('all', array('conditions' => array('Fecha.fecha !=' => '0000-00-00'))));
-    }
+		}
+		else $this->redirect(array('controller'=>'users','action' => 'index'));
+	}
 	
 	public function solicitar($fecha) {
 	  

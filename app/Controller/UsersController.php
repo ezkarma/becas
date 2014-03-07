@@ -24,10 +24,14 @@ var $uses = array('User','Beca');
 	}
 	
 	public function reasignacion() {
+	if ($this->Session->read('Auth.User.role') === 'admin'){
 		$fecha = date('Y-m-d');
 		$this->set('usuario_registrado', $this->Auth->user());
 		$this->set('usuarios', $this->Beca->find('all', array('conditions' => array('Beca.fecha <' => $fecha,'Beca.otorgada ='=>'0'))));
 	}
+	else $this->redirect(array('action' => 'index'));
+	}
+	
 	
 	public function perfil() {
 		$this->set('usuario_registrado', $this->Auth->user());

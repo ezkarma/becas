@@ -25,7 +25,6 @@
 for($i=0;$i<$datediff+1;$i++){
 	
 	if(date('N', strtotime($Date. ' + '.$i .' days')) < 6) {
-	//echo date('Y-m-d', strtotime($Date. ' + '.$i .' days'));
 	$con_dias=$con_dias+1;
 	}
 	
@@ -48,7 +47,8 @@ for($i=0;$i<$datediff+1;$i++){
 	if(date('N', strtotime($Date. ' + '.$i .' days')) < 6) {
 		$fecha_beca = date('Y-m-d', strtotime($Date. ' + '.$i .' days'));
 		$fecha_label = date('d-m-Y', strtotime($Date. ' + '.$i .' days'));
-		echo $this->Form->input('Fecha.'.$con_form.'.fecha', array('type'=>'checkbox','value'=>$fecha_beca,'label'=>$fecha_label, 'checked'=>'true')); 
+		echo $this->Form->input('Fecha.'.$con_form.'.habil', array('type'=>'checkbox','label'=>$fecha_beca, 'checked'=>'true')); 
+		echo $this->Form->input('Fecha.'.$con_form.'.fecha', array('type'=>'hidden','value'=>$fecha_beca,'label'=>$fecha_label)); 
 		echo $this->Form->input('Fecha.'.$con_form.'.becas', array('type'=>'hidden','value'=>$periodos['Periodo']['becas_dia']));
 		
 		$con_dias=$con_dias+1;

@@ -22,7 +22,7 @@ echo $this->Form->input('username',array('label'=>'Matricula', 'type' => 'textbo
 ?>
 
 <?php
-echo $this->Form->submit('Buscar',array('class' => 'btn btn-success')); 
+echo $this->Form->submit('Buscar',array('class' => 'btn btn-danger')); 
 ?>
 
 <?php
@@ -34,18 +34,19 @@ echo $this->Form->submit('Buscar',array('class' => 'btn btn-success'));
 		<table class='table'>
 		<th>Matricula</th>
 		<th>Alumno</th>
-		<th>Fecha Otorgada</th>
-		<th>Reasignar</th>
-		<th>Eliminar</th>
+		<th>Carrera</th>
+		<th>Semestre</th>
+		<th>Becas</th>
 		
 	<?php
 	foreach ($usuarios as $usuario){
 		echo '<tr>';
 		echo '<td>'.$usuario['User']['username'].'</td>';
-		echo '<td>Nombre del Alumno</td>';
-		//echo '<td>'.$usuario['Beca']['fecha'].'</td>';
-		echo '<td>'.$this->Html->link("Reasignar", array('controller' =>'becas','action'=> 'reasignar_beca/'.$usuario['User']['username'].'/'.$usuario['User']['id'])).'</td>';
-		echo '<td>'.$this->Html->link("Eliminar", array('controller' =>'becas','action'=> 'eliminar_beca/'.$usuario['User']['id']),array(),'¿Esta seguro que desea eliminar esta beca?').'</td>';
+		echo '<td>'.$usuario['User']['nombre'].' '.$usuario['User']['apellidop'].' '.$usuario['User']['apellidom'].'</td>';
+		echo '<td>Carrera</td>';
+		echo '<td><center>'.$usuario['User']['semestre'].'</center></td>';
+		echo '<td><center>'.$usuario['User']['dias_disp'].' ';
+		echo $this->Html->link("+", array('controller' =>'users','action'=> 'asignacion/'.$usuario['User']['id']),array('class'=>'btn btn-warning btn-sm')).'</center></td>';
 		echo '</tr>';
 	}
 	?>

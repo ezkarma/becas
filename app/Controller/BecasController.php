@@ -78,7 +78,8 @@ var $uses = array('Fecha','User','Beca','Session','Periodo');
 	}
 	
 	public function eliminar_beca($idbeca){
-		$this->Periodo->updateAll(array('Periodo.no_asignadas' =>'Periodo.no_asignadas + 1' ),array('Periodo.vigente' =>true));
+		$this->Periodo->updateAll(array('Periodo.becas_disponibles' =>'Periodo.becas_disponibles + 1' ),array('Periodo.activo' =>true));
+		//$this->User->updateAll(array('User.dias_disp' =>'User.dias_disp + 1'), array('User.username' => $idusuario));
 		$this->Beca->delete($idbeca);
 		$this->Session->setFlash('La beca ha sido eliminada exitosamente');
 		$this->redirect(array('controller'=>'users','action'=>'reasignacion'));

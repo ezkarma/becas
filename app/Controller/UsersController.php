@@ -2,7 +2,7 @@
 // app/Controller/UsersController.php
 class UsersController extends AppController {
 
-var $uses = array('User','Beca');
+var $uses = array('User','Beca','Periodo');
 
     public function beforeFilter() {
         parent::beforeFilter();
@@ -225,6 +225,17 @@ var $uses = array('User','Beca');
 		foreach($usuarios as $user){
 			$string = AuthComponent::password($user['User']['username']);
 			$this->User->updateAll(array('User.role' => '"alumno"'), array('User.username' => $user['User']['username']));
+		}
+	}
+	
+	public function asignacion($id){
+	$this->set('alumno', $this->User->find('first', array('conditions' => array('User.id =' => $id))));
+	$this->set('periodo', $this->Periodo->find('first', array('conditions' => array('Periodo.activo =' => 1))));
+	if ($this->request->is('post')) {
+		$becas = $this->data['Asignacion']['Becas'];
+		$this->User->updateAll(array('User.dias_disp' =>'User.dias_disp + '.$becas), array('User.id' => $id));
+		$this->Periodo->updateAll(array('Periodo.becas_disponibles' =>'Periodo.becas_disponibles - '.$becas), array('Periodo.activo =' => 1));
+		return $this->redirect(array('controller' =>'alumnos','action' => 'listado'));
 		}
 	}
 	

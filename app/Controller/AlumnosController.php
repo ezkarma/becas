@@ -23,13 +23,13 @@ var $uses = array('User','Beca');
 	public function listado() {
 	if ($this->Session->read('Auth.User.role') === 'admin'){
 		$this->set('usuario_registrado', $this->Auth->user());
-		$this->set('usuarios', $this->User->find('all'));
+		$this->set('usuarios', $this->User->find('all',array('conditions' => array('User.role =' => 'alumno'))));
 		
 		if ($this->request->is('post')) {
 		//For when you need a specific field
 			$matricula = $this->data['UserBusqueda']['username'];
 		//	
-			$this->set('usuarios', $this->User->find('all', array('conditions' => array('User.username LIKE' => '%'.$matricula.'%'))));
+			$this->set('usuarios', $this->User->find('all', array('conditions' => array('User.role =' => 'alumno','User.username LIKE' => '%'.$matricula.'%'))));
 		}
 	}
 	else $this->redirect(array('action' => 'index'));

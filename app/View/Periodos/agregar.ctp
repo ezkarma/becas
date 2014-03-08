@@ -24,6 +24,7 @@ echo $this->Form->input('Fecha final',array('label' => 'Fecha Final'));
  <script>
   $(function() {
     $( "#inicio" ).datepicker({
+	  dateFormat: 'yy-mm-dd',
       defaultDate: "+1w",
       changeMonth: true,
       numberOfMonths: 1,
@@ -32,6 +33,7 @@ echo $this->Form->input('Fecha final',array('label' => 'Fecha Final'));
       }
     });
     $( "#final" ).datepicker({
+	  dateFormat: 'yy-mm-dd',
       defaultDate: "+1w",
       changeMonth: true,
       numberOfMonths: 1,
@@ -42,21 +44,13 @@ echo $this->Form->input('Fecha final',array('label' => 'Fecha Final'));
   });
   </script>
 </head>
-<body>
- <label for="from">De</label>
-
-<input type="text" id="inicio" name="inicio" />
-
-<label for="to">Hasta</label>
-<input type="text" id="final" name="final" />
- 
- </body>
  
 <?php 
 
-echo $this->Form->input('inicio',array('label'=>'Fecha de Inicio')); 
-echo $this->Form->input('final',array('label'=>'Fecha Final')); 
+echo $this->Form->input('inicio',array('label'=>'Fecha de Inicio','id'=>'inicio','type'=>'textbox')); 
+echo $this->Form->input('final',array('label'=>'Fecha Final','id'=>'final','type'=>'textbox'));
 echo $this->Form->input('becas_dia',array('label'=>'Becas por Dia','type'=>'textbox'));
+echo $this->Form->input('activo',array('value'=>1,'type'=>'hidden'));
 echo $this->Form->end(__('Guardar')); 
 
 ?>

@@ -5,15 +5,15 @@ class PeriodosController extends AppController {
     function agregar(){
 		if($this->request->is('post')){
 		
-		//echo $this->request->data;
+		$this->Periodo->updateAll(array('Periodo.activo'=>0));
+		//$this->Periodo->updateAll(array('Periodo.becas_disponibles' =>'Periodo.becas_disponibles - '.$becas), array('Periodo.activo =' => 1));
+		
 		if ($this->Periodo->save($this->request->data)) {
-						
-				//$this->Session->setFlash('Se ha Guardado el perido Exitosamente', 'default', array(), 'good');
+				$this->Session->setFlash('Se ha Guardado el perido Exitosamente', 'default', array(), 'good');
 				$this->Session->setFlash('Seleccione los dias habiles del Periodo');
 				$this->redirect(array('controller'=>'fechas','action'=>'verificacion'));
 				
 			}
-		
 		}
 	}
 	

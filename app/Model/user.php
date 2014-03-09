@@ -4,9 +4,9 @@
 class User extends AppModel {
 	
 	public $belongsTo = array(
-        'Generacion' => array(
-            'className' => 'Generacion',
-            'foreignKey' => 'generacion_id'
+        'Carrera' => array(
+            'className' => 'Carrera',
+            'foreignKey' => 'carrera_id'
         )
     );
 	

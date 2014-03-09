@@ -11,6 +11,7 @@ $terminate = false;
 $fecha_inicial = strtotime($becas[0]['Fecha']['fecha']);
 
 foreach($becas as $beca){
+	
 	$fecha = strtotime($beca['Fecha']['fecha']);
 	
 	if(date('m', $fecha ) != date('m', $fecha_inicial )){

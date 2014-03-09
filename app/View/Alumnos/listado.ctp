@@ -1,4 +1,4 @@
-<div class="container" style="width:60%">
+<div class="container" style="width:80%">
     <div class="row">
         <div class="span3 centred">
 
@@ -37,16 +37,16 @@ echo $this->Form->submit('Buscar',array('class' => 'btn btn-danger'));
 		<th>Carrera</th>
 		<th>Semestre</th>
 		<th>Becas</th>
-		
+		<th></th>
 	<?php
 	foreach ($usuarios as $usuario){
 		echo '<tr>';
 		echo '<td>'.$usuario['User']['username'].'</td>';
 		echo '<td>'.$usuario['User']['nombre'].' '.$usuario['User']['apellidop'].' '.$usuario['User']['apellidom'].'</td>';
-		echo '<td>Carrera</td>';
+		echo '<td>'.$usuario['Carrera']['nombre'].'</td>';
 		echo '<td><center>'.$usuario['User']['semestre'].'</center></td>';
-		echo '<td><center>'.$usuario['User']['dias_disp'].' ';
-		echo $this->Html->link("+", array('controller' =>'users','action'=> 'asignacion/'.$usuario['User']['id']),array('class'=>'btn btn-warning btn-sm')).'</center></td>';
+		echo '<td><center>'.$usuario['User']['dias_disp'].'</td>';
+		echo '<td>'.$this->Html->link("+", array('controller' =>'users','action'=> 'asignacion/'.$usuario['User']['id']),array('class'=>'btn btn-warning btn-sm')).'</center></td>';
 		echo '</tr>';
 	}
 	?>

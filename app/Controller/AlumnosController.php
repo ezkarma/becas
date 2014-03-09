@@ -2,7 +2,7 @@
 
 class AlumnosController extends AppController {
 
-var $uses = array('User','Beca');
+var $uses = array('User','Beca','Carrera');
 
     public function index() {
     
@@ -23,7 +23,7 @@ var $uses = array('User','Beca');
 	public function listado() {
 	if ($this->Session->read('Auth.User.role') === 'admin'){
 		$this->set('usuario_registrado', $this->Auth->user());
-		$this->set('usuarios', $this->User->find('all',array('conditions' => array('User.role =' => 'alumno'))));
+		$this->set('usuarios', $this->Carrera->User->find('all',array('conditions' => array('User.role =' => 'alumno'))));
 		
 		if ($this->request->is('post')) {
 		//For when you need a specific field

@@ -165,7 +165,7 @@ var $uses = array('User','Beca','Periodo');
 		
 		if ($this->Session->read('Auth.User.role') === 'admin'){
 		
-		$this->set('generaciones', $this->User->Generacion->find('list'));
+		$this->set('carreras', $this->User->Carrera->find('list'));
 		
         if ($this->request->is('post')) {
             $this->User->create();

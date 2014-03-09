@@ -84,6 +84,20 @@ var $uses = array('Fecha','User','Beca','Session','Periodo');
 		$this->Session->setFlash('La beca ha sido eliminada exitosamente');
 		$this->redirect(array('controller'=>'users','action'=>'reasignacion'));
 	}
+	
+	public function verificar($fecha){
+		$usuario = $this->Auth->user();
+				
+		$existe = $this->Beca->find('first', array('conditions' => array('Beca.fecha =' => $fecha,'Beca.username' => $usuario['username'])));
+		
+		if(!$existe){	
+			$this->redirect(array('controller'=>'becas','action'=>'solicitar/'.$fecha));
+		}
+		else{
+			$this->Session->setFlash('Usted ya ha solicitado una beca para este dia');
+			$this->redirect(array('controller'=>'becas','action'=>'calendario'));
+		}
+	}
 }
 
 ?>

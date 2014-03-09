@@ -76,12 +76,12 @@ foreach($becas as $beca){
 		if (date('D', $fecha )==='Mon'){
 			echo '</tr>';
 			echo '<tr>';
-			if($beca['Fecha']['becas']>0 && $beca['Fecha']['habil']==1) echo '<td>'.$this->Html->link(date('d', $fecha ), array('controller' =>'becas','action'=> 'solicitar/'.$beca['Fecha']['fecha'])).'</td>';
+			if($beca['Fecha']['becas']>0 && $beca['Fecha']['habil']==1) echo '<td>'.$this->Html->link(date('d', $fecha ), array('controller' =>'becas','action'=> 'verificar/'.$beca['Fecha']['fecha'])).'</td>';
 			else echo '<td>'.date('d', $fecha ).'</td>';
 			}
 	
 	else 	{
-		if($beca['Fecha']['becas']>0 && $beca['Fecha']['habil']==1) echo '<td>'.$this->Html->link(date('d', $fecha ), array('controller' =>'becas','action'=> 'solicitar/'.$beca['Fecha']['fecha'])).'</td>';
+		if($beca['Fecha']['becas']>0 && $beca['Fecha']['habil']==1) echo '<td>'.$this->Html->link(date('d', $fecha ), array('controller' =>'becas','action'=> 'verificar/'.$beca['Fecha']['fecha'])).'</td>';
 		else echo '<td>'.date('d', $fecha ).'</td>';
 		}
 			

@@ -98,6 +98,7 @@ var $uses = array('Fecha','User','Beca','Session','Periodo');
 			$this->redirect(array('controller'=>'becas','action'=>'calendario'));
 		}
 	}
+	
 }
 
 ?>

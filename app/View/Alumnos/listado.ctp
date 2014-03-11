@@ -1,6 +1,7 @@
-<div class="container" style="width:40%">
-    
-        
+<div class="row">
+	<div class="col-lg-2">	
+	</div>
+		<div class="col-lg-8">	        
 
 <h2>Listado de Alumnos</h2>
 <style type="text/css">
@@ -8,6 +9,10 @@ div.inline { float:left; }
 .clearBoth { clear:both; }
 </style>
 
+<div class="col-lg-2">
+</div>
+<div class="col-lg-2"><h3>Matricula</h3><br></div>
+<div class="col-lg-4">	
 <?php
 echo $this->Form->create('UserBusqueda', array(
    'inputDefaults' => array(
@@ -15,22 +20,18 @@ echo $this->Form->create('UserBusqueda', array(
         'div' => false
     )
 ));
-
+echo '<br>';
+echo $this->Form->input('username',array('type' => 'textbox','class'=>'form-control'));
 ?>
+</div>
+
+<div class="col-lg-4">	
 <?php
-echo $this->Form->input('username',array('label'=>'Matricula', 'type' => 'textbox','class'=>'form-control'));
+echo '<br>';
+echo $this->Form->submit('Buscar',array('class' => 'btn btn-success')); 
 ?>
+</div>
 
-<?php
-echo $this->Form->submit('Buscar',array('class' => 'btn btn-danger')); 
-?>
-
-<?php
-
-?>
-
-
-<br>
 		<table class='table'>
 		<th>Matricula</th>
 		<th>Alumno</th>

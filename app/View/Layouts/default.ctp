@@ -89,24 +89,16 @@ $cakeDescription = __d('cake_dev', 'Becas Alimenticias');
 
 		echo $this->Html->css('cake.generic');
 		
-		echo $this->Html->css('bootstrap');
-
 		echo $this->Html->css('bootstrap.min');
-
-		echo $this->Html->css('bootstrap-responsive');
-
-		echo $this->Html->css('bootstrap-responsive.min');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 
-		echo $this->Html->script('bootstrap');
-		echo $this->Html->script('bootstrap.min');
-				
+			
 	?>
 	
-	<nav class="navbar navbar-inverse" role="navigation" height="52px">
+	<nav class="navbar-inverse" role="navigation">
 				  <div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -136,10 +128,8 @@ $cakeDescription = __d('cake_dev', 'Becas Alimenticias');
 													<a href="#" class="dropdown-toggle" data-toggle="dropdown">Agregar <b class="caret"></b></a>
 													<ul class="dropdown-menu">
 														<li><a href="/carreras/agregar">Carrera</a></li>
-														<li><a href="/generaciones/agregar">Generacion</a></li>
 														<li class="divider"></li>
 														<li><a href="../users/agregar_encargado">Encargado de Cafeteria</a></li>
-														<li><a href="../users/agregar_jefe">Jefe de Grupo</a></li>
 														<li><a href="../users/agregar_alumno">Alumno</a></li>
 														</ul>
 													</li>
@@ -163,6 +153,7 @@ $cakeDescription = __d('cake_dev', 'Becas Alimenticias');
 								}
 								else if($user == 'encargado'){
 								echo 		'<li class="tutorials"><a href="/users/perfil">Mi perfil</a>  </li>';
+								echo 		'<li class="tutorials"><a href="/encargados/estadisticas">Estadisticas</a>  </li>';
 								echo			'</ul>
 												<ul class="nav navbar-nav navbar-right">
 												<li><a href="/users/logout">Salir</a></li>

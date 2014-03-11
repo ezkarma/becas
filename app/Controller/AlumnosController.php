@@ -26,9 +26,7 @@ var $uses = array('Alumno','User','Beca','Carrera');
 		$this->set('usuarios', $this->Carrera->User->find('all',array('conditions' => array('User.role =' => 'alumno'))));
 		
 		if ($this->request->is('post')) {
-		//For when you need a specific field
 			$matricula = $this->data['UserBusqueda']['username'];
-		//	
 			$this->set('usuarios', $this->User->find('all', array('conditions' => array('User.role =' => 'alumno','User.username LIKE' => '%'.$matricula.'%'))));
 		}
 	}

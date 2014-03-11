@@ -184,6 +184,7 @@ td,
 th {
   padding: 0;
 }
+
 @media print {
   * {
     color: #000 !important;

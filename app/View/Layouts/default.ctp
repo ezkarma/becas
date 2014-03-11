@@ -106,7 +106,7 @@ $cakeDescription = __d('cake_dev', 'Becas Alimenticias');
 				
 	?>
 	
-	<nav class="navbar navbar-inverse" role="navigation">
+	<nav class="navbar navbar-inverse" role="navigation" height="52px">
 				  <div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -187,16 +187,13 @@ $cakeDescription = __d('cake_dev', 'Becas Alimenticias');
 	<body>
 	 <div id="wrap" height="100%">
 	<div id="container">
-		<div id="header">
-			<h1></h1>
-		</div>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>
 			</div>
-			<div id="push"></div>
+			
 		</div>
 		
 		<div id="footer">

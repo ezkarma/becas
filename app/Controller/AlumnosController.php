@@ -2,7 +2,7 @@
 
 class AlumnosController extends AppController {
 
-var $uses = array('User','Beca','Carrera');
+var $uses = array('Alumno','User','Beca','Carrera');
 
     public function index() {
     
@@ -10,7 +10,7 @@ var $uses = array('User','Beca','Carrera');
 	
 		$usuario = $this->Auth->user();
 		$this->set('usuario_registrado', $this->Auth->user());
-		$this->set('becas', $this->Beca->find('all', array('conditions' => array('Beca.username =' => $usuario['username']))));
+		$this->set('becas', $this->Beca->find('all', array('conditions' => array('Beca.user_id =' => $usuario['id']))));
 		}
 		
 		else $this->redirect(array('action' => 'logout'));

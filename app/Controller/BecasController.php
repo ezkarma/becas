@@ -51,7 +51,7 @@ var $uses = array('Fecha','User','Beca','Session','Periodo');
 			
 			$fecha = date('Y-m-d');
 			
-			$clave = $this->Beca->find('first', array('conditions' => array('Beca.fecha =' => $fecha,'Beca.username' => $usuario)));
+			$clave = $this->Beca->find('first', array('conditions' => array('Beca.fecha =' => $fecha,'Beca.user_id' => $usuario)));
 			
 			$this->set('clave', $clave);
 			$this->set('fecha', $fecha);
@@ -59,7 +59,7 @@ var $uses = array('Fecha','User','Beca','Session','Periodo');
 			if($this->request->is('post')){
 						
 			if ($clave['Beca']['clave']==$this->data['Beca']['clave']){
-				$this->Beca->updateAll(array('Beca.otorgada' =>true), array('Beca.clave' => $clave['Beca']['clave'],'Beca.username' => $usuario,'Beca.fecha' => $fecha));
+				$this->Beca->updateAll(array('Beca.otorgada' =>true), array('Beca.clave' => $clave['Beca']['clave'],'Beca.user_id' => $usuario,'Beca.fecha' => $fecha));
 				$this->Session->setFlash('Su codigo ha sido registrado exitosamente');
 				$this->redirect(array('controller'=>'encargados','action'=>'index'));
 			}
@@ -88,7 +88,7 @@ var $uses = array('Fecha','User','Beca','Session','Periodo');
 	public function verificar($fecha){
 		$usuario = $this->Auth->user();
 				
-		$existe = $this->Beca->find('first', array('conditions' => array('Beca.fecha =' => $fecha,'Beca.username' => $usuario['username'])));
+		$existe = $this->Beca->find('first', array('conditions' => array('Beca.fecha =' => $fecha,'Beca.user_id' => $usuario['id'])));
 		
 		if(!$existe){	
 			$this->redirect(array('controller'=>'becas','action'=>'solicitar/'.$fecha));

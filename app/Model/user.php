@@ -10,6 +10,13 @@ class User extends AppModel {
         )
     );
 	
+	public $hasMany = array(
+        'Beca' => array(
+            'className'    => 'Beca',
+            'foreignKey'    => 'user_id'
+         )
+    );
+	
     public $validate = array(
         'username' => array(
             'required' => array(

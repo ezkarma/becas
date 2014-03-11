@@ -17,13 +17,12 @@
     ))); ?>
 	
     <fieldset>
-        <legend><?php echo __('Por favor introduzca su correo electronico y contraseña'); ?></legend>
+        <legend><?php echo __('Por favor introduzca su matricula y contraseña'); ?></legend>
         <?php echo $this->Form->input('username',array('label'=>'Matricula','class'=>'form-control'));
-		echo '<br>';
-        echo $this->Form->input('password',array('label'=>'Contraseña', 'class'=>'form-control'));
+	     echo $this->Form->input('password',array('label'=>'Contraseña', 'class'=>'form-control'));
     ?>
     </fieldset>
-	<br>
+
 <center><?php echo $this->Form->submit('Iniciar Sesion',array('class' => 'btn btn-success'));?><center>
 
 

@@ -1,6 +1,6 @@
-<div class="container" style="width:80%">
-    <div class="row">
-        <div class="span3 centred">
+<div class="container" style="width:40%">
+    
+        
 
 <h2>Listado de Alumnos</h2>
 <style type="text/css">

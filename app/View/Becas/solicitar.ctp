@@ -6,7 +6,7 @@
 echo $usuario_registrado['nombre'];
 ?>
 
-Esta seguro que desea solicitar el dia <?php echo $fecha ?>
+estas seguro que deseas solicitar una beca para el dia <?php echo $fecha ?>
 </h3>
 
 <?php
@@ -26,7 +26,7 @@ Esta seguro que desea solicitar el dia <?php echo $fecha ?>
 ));
 
 echo $this->Form->input('id');
-echo $this->Form->input('username', array('value' =>  $usuario_registrado['username'],'hidden'=>'true'));
+echo $this->Form->input('user_id', array('type'=>'textbox','value' =>  $usuario_registrado['id'],'hidden'=>'true'));
 echo $this->Form->input('fecha', array('type'=>'textbox', 'value'=>$fecha,'hidden'=>'true'));
 echo $this->Form->input('clave',array('value'=>$randomString,'hidden'=>'true','type'=>'textbox'));
 

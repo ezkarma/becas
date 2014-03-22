@@ -239,5 +239,9 @@ var $uses = array('User','Beca','Periodo');
 		}
 	}
 	
+	public function encuesta(){
+	
+	}
+	
 }
 ?>

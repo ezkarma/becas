@@ -1,3 +1,4 @@
+
 <center>
 <div class="users form" style="width:40%;margin-right:30%;" >
 <?php echo $this->Form->create('Encuesta'); ?>
@@ -6,7 +7,7 @@
 		
         <?php 
 		
-		echo $this->Form->input('user_id',array('type'=>'textbox','value'=>123));
+		echo $this->Form->input('user_id',array('type'=>'hidden','value'=>$usuario_registrado['id']));
 		
 		echo $this->Form->input( 'pregunta1', array('label'=>'¿Es usted originario de Chilpancingo?','type' => 'select',
         'options' => array(1 => 'Si', 2 => 'No',),));

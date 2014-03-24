@@ -14,6 +14,10 @@ class User extends AppModel {
         'Beca' => array(
             'className'    => 'Beca',
             'foreignKey'    => 'user_id'
+         ),
+        'Encuesta' => array(
+            'className'    => 'Encuesta',
+            'foreignKey'    => 'user_id'
          )
     );
 	

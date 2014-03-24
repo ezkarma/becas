@@ -5,18 +5,27 @@ class EncuestasController extends AppController {
 	var $uses = array('Encuesta','User');
 
 	public function index(){
+	$usuario = $this->Auth->user();
+	
+	if($usuario['encuesta'] == 0){
 	
 	$this->set('usuario_registrado', $this->Auth->user());
-	
-		if($this->request->is('post')){
 		
-		if ($this->Encuesta->save($this->request->data)) {
-						
-				$this->Session->setFlash('Se ha Guardado la encuesta Exitosamente','success');
+			if($this->request->is('post')){
+			
+			if ($this->Encuesta->save($this->request->data)) {
+					
+				//$usuario = $this->Auth->user();
+				$this->User->updateAll(array('encuesta' =>1), array('User.id =' => $usuario['id']));
+				$this->Session->write('Auth.User.encuesta', 1);
+				
+				$this->Session->setFlash('Se solicitud ha sido guardada exitosamente','success');
 				$this->redirect(array('controller'=>'users','action'=>'index'));
+				}
+			
 			}
-		
 		}
+	else $this->redirect(array('controller'=>'users','action' => 'index'));
 	}
 	
 	public function evaluar(){

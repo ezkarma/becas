@@ -3,7 +3,6 @@
         <div class="span3 centred">
             
 <?php echo $this->Session->flash('auth'); ?>
-<?php //echo $this->Form->create('User'); ?>
 
 <?php echo $this->Form->create('User', array(
     'class' => 'form-horizontal',
@@ -18,8 +17,9 @@
 	
     <fieldset>
         <legend><?php echo __('Por favor introduzca su matricula y contraseña'); ?></legend>
-        <?php echo $this->Form->input('username',array('label'=>'Matricula','class'=>'form-control'));
-	     echo $this->Form->input('password',array('label'=>'Contraseña', 'class'=>'form-control'));
+        <?php 
+		echo $this->Form->input('username',array('label'=>'Matricula','class'=>'form-control'));
+	    echo $this->Form->input('password',array('label'=>'Contraseña', 'class'=>'form-control'));
     ?>
     </fieldset>
 

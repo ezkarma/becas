@@ -5,16 +5,25 @@ class AlumnosController extends AppController {
 var $uses = array('Alumno','User','Beca','Carrera');
 
     public function index() {
-    
-	 if ($this->Session->read('Auth.User.role') === 'alumno'){
-	
+		
+		if ($this->Session->read('Auth.User.role') === 'alumno'){
 		$usuario = $this->Auth->user();
-		$this->set('usuario_registrado', $this->Auth->user());
-		$this->set('becas', $this->Beca->find('all', array('conditions' => array('Beca.user_id =' => $usuario['id']))));
+				
+			if($usuario['contrasena']==0){
+				$this->redirect(array('controller' => 'users','action'=>'password'));
+				}
+			else {
+			
+				$usuario = $this->Auth->user();
+				$this->set('usuario_registrado', $this->Auth->user());
+				$this->set('becas', $this->Beca->find('all', array('conditions' => array('Beca.user_id =' => $usuario['id']))));
+				}
 		}
 		
 		else $this->redirect(array('action' => 'logout'));
-    }
+	}
+	
+    
 	
 	public function logout() {
     return $this->redirect($this->Auth->logout());

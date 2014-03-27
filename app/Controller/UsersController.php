@@ -1,5 +1,5 @@
 <?php 
-// app/Controller/UsersController.php
+
 class UsersController extends AppController {
 
 var $uses = array('User','Beca','Periodo');
@@ -39,15 +39,12 @@ var $uses = array('User','Beca','Periodo');
 	
 	public function password() {
 	
-	
 		$this->set('usuario', $this->Auth->user());
 		$usuario = $this->Auth->user();
 		
 		$user=$this->User->find('first',array('conditions' => array('username' => $usuario['username'])));
         
-		
-		
-		 if ($this->request->is('post') || $this->request->is('put')) {
+		if ($this->request->is('post') || $this->request->is('put')) {
             $this->request->data;
 			
 			//Checa contraseña actual
@@ -56,8 +53,9 @@ var $uses = array('User','Beca','Periodo');
 				//Checa si las contraseñas coinciden
 				if ($this->request->data['User']['password_nueva'] == $this->request->data['User']['password']){
 					if ($this->User->save($this->request->data)) {
-						$this->Session->setFlash(__('La contraseña ha sido modificada'));
-						return $this->redirect(array('controller' => 'users', 'action' => 'perfil'));
+						$this->User->updateAll(array('User.contrasena' => 1), array('User.username' => $user['User']['username']));
+						$this->Session->setFlash('La contraseña ha sido modificada','success');
+						return $this->redirect(array('controller' => 'users', 'action' => 'logout'));
 						
 					}
 					

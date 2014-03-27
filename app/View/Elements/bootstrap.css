@@ -3892,13 +3892,13 @@ input[type="submit"].btn.btn-mini {
 }
 
 .alert-success {
-  color: #468847;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
+  color: #1C940C;
+  background-color: #1C940C;
+  border-color: #1C940C;
 }
 
 .alert-success h4 {
-  color: #468847;
+  color: #1C940C;
 }
 
 .alert-danger,

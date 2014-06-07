@@ -9,7 +9,7 @@ div.inline { float:left; }
 .clearBoth { clear:both; }
 </style>
 
-<div class="col-lg-2">
+<div class="col-lg-0">
 </div>
 <div class="col-lg-2"><h3>Matricula</h3><br></div>
 <div class="col-lg-4">	
@@ -25,10 +25,16 @@ echo $this->Form->input('username',array('type' => 'textbox','class'=>'form-cont
 ?>
 </div>
 
-<div class="col-lg-4">	
+<div class="col-lg-2">	
 <?php
 echo '<br>';
 echo $this->Form->submit('Buscar',array('class' => 'btn btn-success')); 
+?>
+</div>
+
+<div class="col-lg-2">
+<?php
+echo '<br><center>'.$this->Html->link("Definir Beneficiarios", array('controller' =>'becas','action'=> 'beneficiarios'),array('class'=>'btn btn-primary btn-lg')).'</center>';
 ?>
 </div>
 

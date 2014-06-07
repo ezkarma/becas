@@ -21,7 +21,7 @@
 		echo $this->Form->input( 'pregunta4', array('label'=>'¿Tiene casa propia?','type' => 'select',
         'options' => array(1 => 'Si', 2 => 'No',),));
 		
-		echo $this->Form->input('pregunta5',array('type'=>'textbox','label'=>'¿Cuanto gasta en comida al dia?'));
+		echo $this->Form->input('pregunta5',array('type'=>'textbox','label'=>'¿Cuanto gasta en su alimentación por semana en la UAI?'));
 		
 		echo $this->Form->input( 'pregunta6', array('label'=>'¿Como calificaria la comida de la cafeteria?','type' => 'select',
         'options' => array(1 => 'Excelente', 2 => 'Buena',3=>'Regular',4=>'Mala'),));

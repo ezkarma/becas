@@ -3,7 +3,7 @@ App::uses('User', 'Fecha','Periodo');
 
 class BecasController extends AppController {
 
-var $uses = array('Fecha','User','Beca','Session','Periodo');
+var $uses = array('Fecha','User','Beca','Session','Periodo','Encuesta');
     
     public function listado() {
         $this->set('usuario_registrado', $this->Auth->user());
@@ -96,6 +96,27 @@ var $uses = array('Fecha','User','Beca','Session','Periodo');
 		else{
 			$this->Session->setFlash('Usted ya ha solicitado una beca para este dia');
 			$this->redirect(array('controller'=>'becas','action'=>'calendario'));
+		}
+	}
+	
+	public function beneficiarios(){
+	$encuestas = $this->Encuesta->find('all',array('order'=>'resultado DESC'));
+	$con = 0;
+	
+		if($this->request->is('post')){
+			$beneficiarios = $this->request->data['Beneficiarios']['numero']; 
+			//echo $beneficiarios.'<br>';
+			foreach($encuestas as $encuesta){
+				//echo $encuesta['Encuesta']['user_id'].'<br>';
+				
+				if($con<$beneficiarios){
+				$this->User->updateAll(array('User.aceptado' =>true), array('User.id' => $encuesta['Encuesta']['user_id']));
+				}
+				//echo $con;
+				$con++;
+			}
+			$this->Session->setFlash('Los alumnos han sido aceptados al programa de becas alimenticias','success');
+			$this->redirect(array('controller'=>'encuestas','action'=>'resultados'));
 		}
 	}
 	

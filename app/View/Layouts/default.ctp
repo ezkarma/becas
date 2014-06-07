@@ -133,6 +133,7 @@ $cakeDescription = __d('cake_dev', 'Becas Alimenticias');
 														<li><a href="../users/agregar_alumno">Alumno</a></li>
 														</ul>
 													</li>
+												<li class="tutorials"><a href="/encuestas/evaluar">Encuestas</a>  </li>
 												<li class="tutorials"><a href="/alumnos/listado">Alumnos</a>  </li>
 												<li class="tutorials"><a href="/carreras">Carreras</a>  </li>
 												<li class="tutorials"><a href="/users/reasignacion">Reasignar</a>  </li>

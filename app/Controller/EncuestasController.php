@@ -29,7 +29,7 @@ class EncuestasController extends AppController {
 	}
 	
 	public function evaluar(){
-		$encuestas = $this->Encuesta->find('all');
+		$encuestas = $this->Encuesta->find('all',array('order'=>'resultado DESC'));
 						
 		foreach ($encuestas as $encuesta){
 		
@@ -44,23 +44,23 @@ class EncuestasController extends AppController {
 		
 		switch($encuesta['Encuesta']['pregunta1']){
 				case 1 : $pregunta1 = 0;break;
-				case 2 : $pregunta1 = 1;break;
+				case 2 : $pregunta1 = 10;break;
 			}
 		
 		$resultado = $resultado +$pregunta1;
 		
 		switch($encuesta['Encuesta']['pregunta2']){
-				case 1 : $pregunta2 = 0.75;break;
-				case 2 : $pregunta2 = 1;break;
-				case 3 : $pregunta2 = 0.5;break;
-				case 4 : $pregunta2 = 0.25;break;
+				case 1 : $pregunta2 = 5;break;
+				case 2 : $pregunta2 = 7;break;
+				case 3 : $pregunta2 = 10;break;
+				case 4 : $pregunta2 = 8;break;
 			}
 		
 		$resultado = $resultado +$pregunta2;
 		
 		switch($encuesta['Encuesta']['pregunta3']){
-				case 1 : $pregunta3 = 0;break;
-				case 2 : $pregunta3 = 1;break;
+				case 1 : $pregunta3 = 10;break;
+				case 2 : $pregunta3 = 0;break;
 			}
 		
 		$resultado = $resultado +$pregunta3;
@@ -68,22 +68,21 @@ class EncuestasController extends AppController {
 		if(($encuesta['Encuesta']['pregunta4']==1) && ($encuesta['Encuesta']['pregunta1']==1)){
 				$pregunta4 = 0;
 		}
-		else $pregunta4 = 1;
+		else $pregunta4 = 10;
 		
 		$resultado = $resultado +$pregunta4;
 		
-		if($encuesta['Encuesta']['pregunta5']>=75) $pregunta5 = 0;
-		elseif($encuesta['Encuesta']['pregunta5']>=50 && $encuesta['Encuesta']['pregunta5']<75) $pregunta5 = 0.25;
-		elseif($encuesta['Encuesta']['pregunta5']>=25 && $encuesta['Encuesta']['pregunta5']<50) $pregunta5 = 0.5;
-		elseif($encuesta['Encuesta']['pregunta5']>0 && $encuesta['Encuesta']['pregunta5']<25) $pregunta5 =1;
+		if($encuesta['Encuesta']['pregunta5']>=250) $pregunta5 = 0;
+		elseif($encuesta['Encuesta']['pregunta5']>=150 && $encuesta['Encuesta']['pregunta5']<250) $pregunta5 = 5;
+		elseif($encuesta['Encuesta']['pregunta5']>0 && $encuesta['Encuesta']['pregunta5']<150) $pregunta5 = 10;
 		elseif($encuesta['Encuesta']['pregunta5']==0) $pregunta5 = 0;
 		
 		$resultado = $resultado +$pregunta5;
 		
 		switch($encuesta['Encuesta']['pregunta6']){
-				case 1 : $pregunta6 = 1;break;
-				case 2 : $pregunta6 = 0.75;break;
-				case 3 : $pregunta6 = 0.5;break;
+				case 1 : $pregunta6 = 10;break;
+				case 2 : $pregunta6 = 8;break;
+				case 3 : $pregunta6 = 5;break;
 				case 4 : $pregunta6 = 0;break;
 			}
 		

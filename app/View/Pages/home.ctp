@@ -22,4 +22,4 @@ if (!Configure::read('debug')):
 endif;
 App::uses('Debugger', 'Utility');
 ?>
-<h2>Sistema de Gestion de Becas Alimenticias de la UAI</h2>
+<center><h2>Sistema de Gestion de Becas Alimenticias de la UAI</h2></center>

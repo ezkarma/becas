@@ -1,12 +1,11 @@
-<h2>Sistema de Gestion de Becas Alimenticias de la UAI</h2>
-
+<center>
 <h3>Bienvenido
 <?php
 echo $usuario_registrado['nombre'];
 ?>
 </h3>
 <h4>Alumno</h4>
-
+</center>
 <?php 
 if ($usuario_registrado['encuesta'] == 0){
 echo '<br>';

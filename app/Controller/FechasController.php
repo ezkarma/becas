@@ -2,16 +2,17 @@
 
 class FechasController extends AppController {
 
-   var $uses = array('Fecha','User');
+   var $uses = array('Fecha','User','Alumno');
    
 	 function verificacion(){
-	 
+		$this->Fecha->query('TRUNCATE fechas;');
+		
 		$this->set('periodos', $this->Fecha->Periodo->find('first', array('order' => array('id' => 'desc'))));
 		if($this->request->is('post')){
 		
 		if ($this->Fecha->saveMany($this->request->data['Fecha'])) {
 				
-				$this->Session->setFlash('Seleccione los dias habiles del Periodo');
+				//$this->Session->setFlash('Seleccione el numero de becas que se le asignara a cada alumno');
 				$this->redirect(array('controller'=>'fechas','action'=>'asignacion'));
 				
 			}
@@ -20,16 +21,16 @@ class FechasController extends AppController {
 	 }
 	 
 	 function asignacion(){
-		
+				
 		$this->set('becas', $this->Fecha->find('all', array('conditions' => array('Fecha.fecha !=' => '0000-00-00'))));
-		$this->set('total_alumnos', $this->User->find('count',array('conditions' => array('User.role =' => 'alumno'))));
+		$this->set('total_alumnos', $this->Alumno->find('count',array('conditions' => array('Alumno.aceptado =' => true))));
 				
 		if($this->request->is('post')){
 				
 								
-				if($this->User->updateAll(array('User.dias_disp' =>"'" . $this->request->data['User']['dias_disp'] . "'"),array('User.role' => 'alumno'))){
+				if($this->Alumno->updateAll(array('Alumno.dias_disp' =>"'" . $this->request->data['Alumno']['dias_disp'] . "'"),array('Alumno.aceptado'=>true))){
 					
-				$this->Session->setFlash('Los dias fueron asignados');
+				$this->Session->setFlash('El periodo de becas alimenticias ha sido generado exitosamente','success');
 				$this->redirect(array('controller'=>'users','action'=>'index'));
 				
 				}		

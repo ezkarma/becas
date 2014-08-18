@@ -2,21 +2,27 @@
 
 class EncuestasController extends AppController {
 
-	var $uses = array('Encuesta','User');
+	var $uses = array('Encuesta','User','Alumno');
 
+	public function ver($curp){
+	$encuesta = $this->Encuesta->find('first',array('conditions' => array('alumno_matricula' => $curp)));
+	$this->set('encuesta',$encuesta);
+	}
+	
 	public function index(){
-	$usuario = $this->Auth->user();
-	
-	if($usuario['encuesta'] == 0){
-	
-	$this->set('usuario_registrado', $this->Auth->user());
+	$user = $this->Auth->user();
+	$usuario = $this->Alumno->find('first',array('conditions' => array('matricula' => $user['username'])));
+		
+	if($usuario['Alumno']['encuesta'] == 0){
+		
+	$this->set('usuario_registrado', $usuario);
 		
 			if($this->request->is('post')){
 			
 			if ($this->Encuesta->save($this->request->data)) {
 					
 				//$usuario = $this->Auth->user();
-				$this->User->updateAll(array('encuesta' =>1), array('User.id =' => $usuario['id']));
+				$this->Alumno->updateAll(array('encuesta' =>1), array('Alumno.matricula =' => $usuario['Alumno']['matricula']));
 				$this->Session->write('Auth.User.encuesta', 1);
 				
 				$this->Session->setFlash('Se solicitud ha sido guardada exitosamente','success');
@@ -88,7 +94,7 @@ class EncuestasController extends AppController {
 		
 		$resultado = $resultado +$pregunta6;
 				
-		$this->Encuesta->updateAll(array('resultado' =>$resultado), array('Encuesta.user_id =' => $encuesta['Encuesta']['user_id']));
+		$this->Encuesta->updateAll(array('resultado' =>$resultado), array('Encuesta.alumno_matricula =' => $encuesta['Encuesta']['alumno_matricula']));
 		}
 		
 		return $this->redirect(array('controller'=>'encuestas','action' => 'resultados'));
@@ -97,11 +103,11 @@ class EncuestasController extends AppController {
 	
 	public function resultados(){
 	if ($this->Session->read('Auth.User.role') === 'admin'){
-			$this->set('usuarios',$this->User->Encuesta->find('all',array('order' =>'Encuesta.resultado DESC')));
+			$this->set('usuarios',$this->Alumno->Encuesta->find('all',array('order' =>'Encuesta.resultado DESC')));
 		
 		if ($this->request->is('post')) {
 			$matricula = $this->data['UserBusqueda']['username'];
-			$this->set('usuarios', $this->User->Encuesta->find('all', array('order' =>'Encuesta.resultado DESC','conditions' => array('User.role =' => 'alumno','User.username LIKE' => '%'.$matricula.'%'))));
+			$this->set('usuarios', $this->Alumno->Encuesta->find('all', array('order' =>'Encuesta.resultado DESC','conditions' => array('User.role =' => 'alumno','User.username LIKE' => '%'.$matricula.'%'))));
 		}
 	
 	}

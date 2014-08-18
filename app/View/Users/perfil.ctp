@@ -5,9 +5,13 @@
 		 <h2>Mi Perfil</h2>
 		 <br>
 		 <table class='table'>
-		<tr><td><?php echo '<strong>Matricula:</strong> '.$usuario_registrado['username']; ?></td></tr>
-		<tr><td><?php echo '<strong>Nombre:</strong> '.$usuario_registrado['nombre'].' '.$usuario_registrado['apellidop'].' '.$usuario_registrado['apellidom']; ?></td></tr>
+		<?php if($user['role'] != 'admin'){ ?>
+		<tr><td><?php echo '<strong>Matricula:</strong> '.$usuario_registrado['Alumno']['matricula']; ?></td></tr>
+		<tr><td><?php echo '<strong>Nombre:</strong> '.$usuario_registrado['Alumno']['nombre'].' '.$usuario_registrado['Alumno']['apellidop'].' '.$usuario_registrado['Alumno']['apellidom']; ?></td></tr>
 		<tr><td><?php echo '<strong>Contraseña: </strong> '.$this->Html->link('Modificar',array('controller' => 'Users', 'action' => 'Password')); ?></td></tr>
+		<?php } else echo '<tr><td><strong>Contraseña: </strong> '.$this->Html->link('Modificar',array('controller' => 'Users', 'action' => 'Password')).'</td></tr>'; ?>
+		
+		
 		</table>	
 
 	 </div>

@@ -2,26 +2,8 @@
 <?php
 // app/Model/User.php
 class User extends AppModel {
-	
-	public $belongsTo = array(
-        'Carrera' => array(
-            'className' => 'Carrera',
-            'foreignKey' => 'carrera_id'
-        )
-    );
-	
-	public $hasMany = array(
-        'Beca' => array(
-            'className'    => 'Beca',
-            'foreignKey'    => 'user_id'
-         ),
-        'Encuesta' => array(
-            'className'    => 'Encuesta',
-            'foreignKey'    => 'user_id'
-         )
-    );
-	
-    public $validate = array(
+		
+	public $validate = array(
         'username' => array(
             'required' => array(
                 'rule' => array('notEmpty'),

@@ -1,14 +1,9 @@
-<h1>Sistema de Gestion de Becas Alimenticias de la UAI</h1>
-<h2></span> Cafeteria</h2>
-<br>
-<h3>Bienvenido
-<?php
-echo $usuario_registrado['nombre'];
-?>
-</h3>
-<br>
-<h3>Becas disponibles para el dia <?php echo $fecha?></h3>
+<center>
+<h2></span> Cafeteria "<?php echo $encargado['Cafeteria']['nombre'] ?>"</h2>
+<h3>Encargado: <?php echo $encargado['CafeteriaEncargado']['nombre'];?><h3>
 
+<h3>Becas solicitadas para el dia <b><?php echo $dia.' '.$datemonth.' de '.$mes?></b></h3>
+<br>
 <div class="row">
 	<div class="col-lg-2">	
 	</div>
@@ -47,11 +42,12 @@ echo $this->Form->submit('Buscar',array('class' => 'btn btn-success'));
 
 foreach ($alumnos as $alumno){
 echo '<tr>';
-echo '<td>'.$alumno['User']['username'].'</td>';
-echo '<td>'.$alumno['User']['nombre'].' '.$alumno['User']['apellidop'].' '.$alumno['User']['apellidom'].'</td>';
-echo '<td>'.$carreras[$alumno['User']['carrera_id']-1]['Carrera']['nombre'].'</td>';
-echo '<td>'.$alumno['User']['semestre'].'</td>';
-if ($alumno['Beca']['otorgada']==false) echo '<td>'.$this->Html->link("Otorgar", array('controller' =>'becas','action'=> 'otorgar/'.$alumno['Beca']['user_id'])).'</td>';
+echo '<td>'.$alumno['Alumno']['matricula'].'</td>';
+echo '<td>'.$alumno['Alumno']['nombre'].' '.$alumno['Alumno']['apellidop'].' '.$alumno['Alumno']['apellidom'].'</td>';
+// echo '<td>'.$carreras[$alumno['Alumno']['carrera_id']]['Carrera']['nombre'].'</td>';
+echo '<td></td>';
+echo '<td>'.$alumno['Alumno']['semestre'].'</td>';
+if ($alumno['Beca']['otorgada']==false) echo '<td>'.$this->Html->link("Otorgar", array('controller' =>'becas','action'=> 'otorgar/'.$alumno['Beca']['alumno_matricula'])).'</td>';
 else echo '<td>Otorgada</td>';
 echo '</tr>';
 }
@@ -61,3 +57,4 @@ echo '</tr>';
 	</div>
 </div>
 </div>
+<center>

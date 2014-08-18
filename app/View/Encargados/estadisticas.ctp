@@ -1,13 +1,10 @@
-<h1>Sistema de Gestion de Becas Alimenticias de la UAI</h1>
-<h2>Estadisticas</h2>
-<br>
-
-
+<center>
 <div class="row">
 	<div class="col-lg-2">	
 	</div>
 		<div class="col-lg-8">	
-
+<h2>Estadisticas</h2>
+<br>
 <table class='table'>
 <th>Fecha</th>
 <th>Becas Disponibles</th>
@@ -27,3 +24,4 @@ echo '</tr>';
 	</div>
 </div>
 </div>
+</center>

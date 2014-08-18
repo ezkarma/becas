@@ -1,5 +1,5 @@
 <?php
-App::uses('User', 'Jefe');
+App::uses('User','Jefe');
 
 class AdminsController extends AppController {
 

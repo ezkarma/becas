@@ -6,8 +6,8 @@ class Carrera extends AppModel {
 	var $displayField = 'nombre';
 	
 	public $hasMany = array(
-        'User' => array(
-            'className'    => 'User',
+        'Alumno' => array(
+            'className'    => 'Alumno',
             'foreignKey'    => 'carrera_id'
          )
     );

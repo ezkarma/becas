@@ -49,9 +49,9 @@ echo $this->Form->input('Fecha final',array('label' => 'Fecha Final'));
 
 echo $this->Form->input('inicio',array('label'=>'Fecha de Inicio','id'=>'inicio','type'=>'textbox')); 
 echo $this->Form->input('final',array('label'=>'Fecha Final','id'=>'final','type'=>'textbox'));
-echo $this->Form->input('becas_dia',array('label'=>'Becas por Dia','type'=>'textbox'));
+echo $this->Form->input('becas_dia',array('label'=>'Becas por Dia','type'=>'hidden','value'=>$becas));
 echo $this->Form->input('activo',array('value'=>1,'type'=>'hidden'));
-echo $this->Form->end(__('Guardar')); 
+echo $this->Form->end(__('Siguiente')); 
 
 ?>
 </div>

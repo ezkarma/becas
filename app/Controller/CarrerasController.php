@@ -2,7 +2,7 @@
 
 class CarrerasController extends AppController {
 
-	var $uses = array('Carrera','User');
+	var $uses = array('Carrera','Alumno');
 
     function agregar(){
 		if($this->request->is('post')){
@@ -22,8 +22,7 @@ class CarrerasController extends AppController {
 		$this->set('carreras', $carreras);
 		
 		foreach($carreras as $carrera){
-			
-			$alumnos[$carrera['Carrera']['id']] = $this->User->find('count', array('conditions' => array('User.carrera_id =' => $carrera['Carrera']['id'])));
+			$alumnos[$carrera['Carrera']['id']] = $this->Alumno->find('count', array('conditions' => array('Alumno.carrera_id =' => $carrera['Carrera']['id'])));
 		}
 		
 		$this->set('alumnos',$alumnos);

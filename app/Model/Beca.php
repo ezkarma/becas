@@ -7,9 +7,13 @@ class Beca extends AppModel {
     public $name = 'Beca';
 	
 	public $belongsTo = array(
-        'User' => array(
-            'className' => 'User',
-            'foreignKey' => 'user_id'
+        'Alumno' => array(
+            'className' => 'Alumno',
+            'foreignKey' => 'alumno_matricula'
+        ),
+		 'Cafeteria' => array(
+            'className' => 'Cafeteria',
+            'foreignKey' => 'cafeteria_id'
         )
     );
 }

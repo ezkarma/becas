@@ -2,7 +2,7 @@
 
 class UsersController extends AppController {
 
-var $uses = array('User','Beca','Periodo');
+var $uses = array('User','Beca','Periodo','Alumno','Carrera');
 
     public function beforeFilter() {
         parent::beforeFilter();
@@ -34,14 +34,22 @@ var $uses = array('User','Beca','Periodo');
 	
 	
 	public function perfil() {
-		$this->set('usuario_registrado', $this->Auth->user());
+		$user = $this->Auth->user();
+		$this->set('user',$this->Auth->user());
+		
+		if($user['role'] != 'admin'){
+			$usuario = $this->Alumno->find('first',array('conditions' => array('matricula' => $user['username'])));	
+			$this->set('usuario_registrado', $usuario);
+		}
+		
+		else $this->set('usuario_registrado', $user);
 	}
 	
 	public function password() {
 	
 		$this->set('usuario', $this->Auth->user());
 		$usuario = $this->Auth->user();
-		
+					
 		$user=$this->User->find('first',array('conditions' => array('username' => $usuario['username'])));
         
 		if ($this->request->is('post') || $this->request->is('put')) {
@@ -53,7 +61,7 @@ var $uses = array('User','Beca','Periodo');
 				//Checa si las contraseñas coinciden
 				if ($this->request->data['User']['password_nueva'] == $this->request->data['User']['password']){
 					if ($this->User->save($this->request->data)) {
-						$this->User->updateAll(array('User.contrasena' => 1), array('User.username' => $user['User']['username']));
+						$this->Alumno->updateAll(array('Alumno.contrasena' => 1), array('Alumno.matricula' => $user['User']['username']));
 						$this->Session->setFlash('La contraseña ha sido modificada','success');
 						return $this->redirect(array('controller' => 'users', 'action' => 'logout'));
 						
@@ -64,11 +72,8 @@ var $uses = array('User','Beca','Periodo');
 			}
 			else $this->Session->setFlash(__('Contraseña incorrecta'));
 		}
-		
-		
-		
+				
 	}
-
 
     public function index() {
 			
@@ -163,12 +168,12 @@ var $uses = array('User','Beca','Periodo');
 		
 		if ($this->Session->read('Auth.User.role') === 'admin'){
 		
-		$this->set('carreras', $this->User->Carrera->find('list'));
-		
-        if ($this->request->is('post')) {
-            $this->User->create();
-            if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('El alumno ha sido guardado'));
+		$this->set('carreras', $this->Alumno->Carrera->find('list'));
+				
+		if ($this->request->is('post')) {
+            $this->Alumno->create();
+            if ($this->Alumno->save($this->request->data)) {
+                $this->Session->setFlash('El alumno ha sido guardado','success');
                 return $this->redirect(array('controller' =>'admins','action' => 'index'));
             }
             $this->Session->setFlash(__('El alumno no pudo ser guardado. Por favor intente nuevamente'));

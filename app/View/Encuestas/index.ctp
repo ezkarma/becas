@@ -7,7 +7,7 @@
 		
         <?php 
 		
-		echo $this->Form->input('user_id',array('type'=>'hidden','value'=>$usuario_registrado['id']));
+		echo $this->Form->input('alumno_matricula',array('type'=>'hidden','value'=>$usuario_registrado['Alumno']['matricula']));
 		
 		echo $this->Form->input( 'pregunta1', array('label'=>'¿Es usted originario de Chilpancingo?','type' => 'select',
         'options' => array(1 => 'Si', 2 => 'No',),));
@@ -21,8 +21,9 @@
 		echo $this->Form->input( 'pregunta4', array('label'=>'¿Tiene casa propia?','type' => 'select',
         'options' => array(1 => 'Si', 2 => 'No',),));
 		
-		echo $this->Form->input('pregunta5',array('type'=>'textbox','label'=>'¿Cuanto gasta en su alimentación por semana en la UAI?'));
-		
+		echo $this->Form->input( 'pregunta5', array('label'=>'¿Cuanto gasta en su alimentación por semana en la UAI?','type' => 'select',
+        'options' => array(0 => '0', 100 => '$1 a $150', 160 => '$151 a $250', 260 => 'Mas de $250',),));
+				
 		echo $this->Form->input( 'pregunta6', array('label'=>'¿Como calificaria la comida de la cafeteria?','type' => 'select',
         'options' => array(1 => 'Excelente', 2 => 'Buena',3=>'Regular',4=>'Mala'),));
 		

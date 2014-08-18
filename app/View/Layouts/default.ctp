@@ -122,21 +122,23 @@ $cakeDescription = __d('cake_dev', 'Becas Alimenticias');
 								if ($this->Session->read('Auth.User')){
 								
 								if($user == 'admin'){
-							echo 		'<li class="tutorials"><a href="/users/perfil">Mi perfil</a>  </li>
+							echo 		'<li class="tutorials"><a href="/users/perfil">Mi perfil</a>  </li>'.
 												
-													<li class="dropdown">
-													<a href="#" class="dropdown-toggle" data-toggle="dropdown">Agregar <b class="caret"></b></a>
-													<ul class="dropdown-menu">
-														<li><a href="/carreras/agregar">Carrera</a></li>
-														<li class="divider"></li>
-														<li><a href="../users/agregar_encargado">Encargado de Cafeteria</a></li>
-														<li><a href="../users/agregar_alumno">Alumno</a></li>
-														</ul>
-													</li>
+													// <li class="dropdown">
+													// <a href="#" class="dropdown-toggle" data-toggle="dropdown">Agregar <b class="caret"></b></a>
+													// <ul class="dropdown-menu">
+														// <li><a href="/carreras/agregar">Carrera</a></li>
+														// <li class="divider"></li>
+														// <li><a href="../users/agregar_encargado">Encargado de Cafeteria</a></li>
+														// <li><a href="../users/agregar_alumno">Alumno</a></li>
+														// </ul>
+													// </li>
+												'<li class="tutorials"><a href="/alumnos/listado">Alumnos</a>  </li>
+												<li class="tutorials"><a href="/becas">Becas</a>  </li>
 												<li class="tutorials"><a href="/encuestas/evaluar">Encuestas</a>  </li>
-												<li class="tutorials"><a href="/alumnos/listado">Alumnos</a>  </li>
 												<li class="tutorials"><a href="/carreras">Carreras</a>  </li>
-												<li class="tutorials"><a href="/users/reasignacion">Reasignar</a>  </li>
+												<li class="tutorials"><a href="/cafeterias">Cafeterias</a>  </li>
+												
 												</ul>
 												<ul class="nav navbar-nav navbar-right">
 												<li><a href="/users/logout">Salir</a></li>

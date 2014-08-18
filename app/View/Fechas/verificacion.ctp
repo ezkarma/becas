@@ -1,7 +1,7 @@
 <div class="container" style="width:60%">
     <div class="row">
         <div class="span3 centred">
-<h2>Verificacion</h2>
+<center><h2>Verificación de Fechas</h2></center>
 
 <?php
 	
@@ -156,11 +156,13 @@ echo '</tr>';
 ?>
 </table>
 
+<center>
 <?php
 ///////////Finaliza Form
-echo $this->Form->end(__('Guardar')); 
+echo $this->Form->end(__('Siguiente')); 
 
 ?>
+<center>
 
 </div>
 </div>
